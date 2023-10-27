@@ -22,14 +22,18 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
     TokenVerifyView,
 )
-
 from core.views import RegisterView, UserViewSet, LogoutView
 from todos.views import TodoViewSet
 
+# Admin Panel text
+admin.site.site_header = "Django Admin Panel"
+admin.site.site_title = "Django Boilerplate Admin Panel"
+admin.site.index_title = "Welcome to Django Boilerplate Admin Panel"
+
 router = routers.SimpleRouter()
 
-router.register(r"api/users/", UserViewSet)
-router.register(r"api/todos/", TodoViewSet)
+router.register(r"users/", UserViewSet)
+router.register(r"todos/", TodoViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -40,4 +44,7 @@ urlpatterns = [
     path("api/logout/", LogoutView.as_view(), name="logout"),
 ]
 
-urlpatterns += router.urls
+# urlpatterns += router.urls
+# this adds the prefix api/ all urls registered via router.register
+# ie: url/api/todos/
+urlpatterns += (path("api/", include(router.urls)),)

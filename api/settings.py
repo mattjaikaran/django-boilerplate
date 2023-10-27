@@ -52,6 +52,7 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [
+    "unfold",  # Unfold Admin panel
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

@@ -10,10 +10,12 @@
 - Authentication 
     - Access Token
     - Refresh Token
+- Unfold Admin - admin panel
 
 TODO:
 - Passwordless login
-- Mailer
+- Maile - Mailgun/Sendgrid
+- Django Storage for S3
 
 
 # Get started
