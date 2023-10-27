@@ -3,10 +3,11 @@
 import os
 import sys
 from dotenv import load_dotenv
-
 load_dotenv()
+# import dotenv # if load_dotenv() doesnt work. uncomment 
 
 def main():
+    # dotenv.read_dotenv()
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'api.settings')
     try:

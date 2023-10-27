@@ -5,22 +5,36 @@
 - Django Rest Framework 3.14
 - Postgres DB
 - Black formatter
+- Bash
+- Django Rest Framework SimpleJWT
+- Authentication 
+    - Access Token
+    - Refresh Token
 
 TODO:
-- Passwordless auth
+- Passwordless login
+- Mailer
 
 
 # Get started
 
 ```bash
-$ python3 -m venv env
-$ source env/bin/activate
 $ git clone URL
 $ cd REPO_NAME
-$ touch .env
+$ python3 -m venv env
+$ source env/bin/activate
+$ touch .env # copy and fill out data from env.example
 $ pip3 install -r requirements.txt
 $ python3 manage.py migrate
-$ python3 manage.py createsuperuser
+$ python3 manage.py create_superuser
+
+# before running server generate a new secret key
+$ python3 manage.py shell
+>>> from django.core.management.utils import get_random_secret_key
+>>> print(get_random_secret_key()) 
+# copy generated code and paste value as SECRET_KEY variable in .env file
+>>> exit()
+
 $ python3 manage.py runserver
 ```
 
