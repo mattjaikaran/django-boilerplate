@@ -1,20 +1,23 @@
 # Django Boilerplate
 
+Django REST Starter with all that cool stuff. WIP
+
+### Technologies
 - Python 3.11.2
 - Django 4.2
 - Django Rest Framework 3.14
 - Postgres DB
 - Black formatter
-- Bash
 - Django Rest Framework SimpleJWT
 - Authentication 
     - Access Token
     - Refresh Token
-- Unfold Admin - admin panel
+- Unfold Admin Panel
+- Bash
+- Railway Deployment
 
 TODO:
-- Passwordless login
-- Maile - Mailgun/Sendgrid
+- Mailer - Mailgun/Sendgrid
 - Django Storage for S3
 
 

@@ -24,6 +24,10 @@ from rest_framework_simplejwt.views import (
 )
 from core.views import RegisterView, UserViewSet, LogoutView
 from todos.views import TodoViewSet
+from drf_spectacular.views import (
+    SpectacularAPIView,
+    SpectacularSwaggerView,
+)
 
 # Admin Panel text
 admin.site.site_header = "Django Admin Panel"
@@ -37,11 +41,19 @@ router.register(r"todos/", TodoViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # auth
     path("api/login/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
     path("api/register/", RegisterView.as_view(), name="sign_up"),
     path("api/logout/", LogoutView.as_view(), name="logout"),
+    # swagger
+    path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/schema/swagger-ui/",
+        SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
 ]
 
 # urlpatterns += router.urls

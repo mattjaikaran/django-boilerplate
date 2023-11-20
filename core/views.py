@@ -1,8 +1,10 @@
-from rest_framework import mixins, viewsets, views, permissions, status
+from rest_framework import mixins, viewsets, views, permissions, status, generics
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import CustomUser
 from .serializers import UserSerializer
+from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
+from drf_spectacular.types import OpenApiTypes
 
 
 class UserViewSet(
@@ -18,7 +20,7 @@ class UserViewSet(
     serializer_class = UserSerializer
 
 
-class RegisterView(views.APIView):
+class RegisterView(generics.CreateAPIView):
     def post(self, request):
         print(f"request.data => {request.data}")
         serializer = UserSerializer(data=request.data)
@@ -26,8 +28,11 @@ class RegisterView(views.APIView):
         serializer.save()
         return Response(serializer.data)
 
+    def get_serializer_class(self):
+        return UserSerializer
 
-class LogoutView(views.APIView):
+
+class LogoutView(generics.CreateAPIView):
     # permission_classes = (permissions.IsAuthenticated)
     def post(self, request):
         try:
@@ -43,3 +48,6 @@ class LogoutView(views.APIView):
                 data={f"error in LogoutView {str(e)}"},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+    def get_serializer_class(self):
+        return UserSerializer
