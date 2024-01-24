@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.db import models
+from import_export.admin import ImportExportModelAdmin
+from unfold.admin import ModelAdmin
 
 
-class GenericModelAdmin(admin.ModelAdmin):
+class GenericModelAdmin(ImportExportModelAdmin, ModelAdmin, admin.ModelAdmin):
     """
     Generic Model Admin with default fields for search and filter options.
     Search filter for name field
@@ -29,5 +31,5 @@ class GenericModelAdmin(admin.ModelAdmin):
             or (type(field) is models.CharField and field.choices is not None)
         ]
 
-    # def has_delete_permission(self, request, obj=None) -> bool:
-    #     return not request.user.is_superuser
+    def has_delete_permission(self, request, obj=None) -> bool:
+        return not request.user.is_staff or request.user.is_superuser

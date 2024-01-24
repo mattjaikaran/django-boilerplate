@@ -1,25 +1,36 @@
-# Django Boilerplate
+# Matt Django Boilerplate
 
-Django REST Starter with all that cool stuff. WIP
+Django REST Starter with all that cool config stuff I like and need to get started.
+
+Newest DRF, Postgres, Railway config. Easily hook front end into.
 
 ### Technologies
 - Python 3.11.2
 - Django 4.2
 - Django Rest Framework 3.14
-- Postgres DB
-- Black formatter
+- Postgres 14 DB
 - Django Rest Framework SimpleJWT
 - Authentication 
     - Access Token
     - Refresh Token
-- Unfold Admin Panel
-- Bash
-- Railway Deployment
+- [Unfold Admin Panel](https://github.com/unfoldadmin/django-unfold)
+- Bash and Python scripts
+    - Located in scripts directory
+- Railway Deployment config
+- Mailgun Mailer
+- Django Storages for S3 (WIP)
+- Tests via PyTest
+- Black formatter
 
-TODO:
-- Mailer - Mailgun/Sendgrid
-- Django Storage for S3
 
+### Features
+- Users
+  - Organization/Team config commented out
+- Notifications
+- Mailer
+- Messaging
+    - Not using websockets
+- Stripe integration (WIP)
 
 # Get started
 
