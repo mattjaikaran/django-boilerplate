@@ -1,0 +1,104 @@
+[
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "87f5b2bc-2b35-4b2f-9d2b-256d5b8447a8",
+      "email": "Sincere@april.biz",
+      "first_name": "Leanne",
+      "last_name": "Graham",
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "f927b39e-1e58-45e4-bb82-2a29741bde44",
+      "email": "Shanna@melissa.tv",
+      "first_name": "Ervin",
+      "last_name": "Howell",
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "2985e2e1-54ab-4c06-9a8a-65021641a94b",
+      "email": "Nathan@yesenia.net",
+      "first_name": "Clementine",
+      "last_name": "Bauch",
+
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "c4876341-ceda-4b71-8cd3-5ac9bc13f0b6",
+      "email": "Julianne.OConner@kory.org",
+      "first_name": "Patricia",
+      "last_name": "Lebsack",
+
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "60524c91-d194-4df5-9d50-e5a86f1b35c7",
+      "email": "Lucio_Hettinger@annie.ca",
+      "first_name": "Chelsey",
+      "last_name": "Dietrich",
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "780d1e7f-201d-4f48-bc02-0169e2e7c7a7",
+      "email": "Karley_Dach@jasper.info",
+      "first_name": "Mrs. Dennis",
+      "last_name": "Schulist",
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "af72daa6-bc8e-4c61-8130-8f87f6f8c996",
+      "email": "Telly.Hoeger@billy.biz",
+      "first_name": "Kurtis",
+      "last_name": "Weissnat",
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "c1b19836-5c68-42f3-9aaf-6dcd5f708996",
+      "email": "Sherwood@rosamond.me",
+      "first_name": "Nicholas Runolfsdottir",
+      "last_name": "V",
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "50a62277-8aa3-4a13-961b-0d5e58a7a620",
+      "email": "Chaim_McDermott@dana.io",
+      "first_name": "Glenna",
+      "last_name": "Reichert",
+      "password": "resetpassword"
+    }
+  },
+  {
+    "model": "core.CustomUser",
+    "fields": {
+      "id": "e1e6b788-5cf8-48e9-b438-d7e7a84a380d",
+      "email": "Rey.Padberg@karina.biz",
+      "first_name": "Clementina",
+      "last_name": "DuBuque",
+      "password": "resetpassword"
+    }
+  }
+]

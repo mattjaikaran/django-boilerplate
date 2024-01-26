@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.sites",
+    # "django.contrib.sites",
     "django_extensions",
     # Third-party apps
     "rest_framework",
@@ -61,8 +61,8 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
-    # "import_export",
-    # "drf_spectacular",
+    "import_export",
+    "drf_spectacular",
     # Internal apps
     "common",
     "core",
@@ -141,6 +141,8 @@ WSGI_APPLICATION = "api.wsgi.application"
 REST_FRAMEWORK = {
     "DEFAULT_VERSIONING_CLASS": "rest_framework.versioning.AcceptHeaderVersioning",
     "DEFAULT_PAGINATION_CLASS": "core.pagination.PageNumberPagination",
+    # DRF Spectacular Configuration
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework.authentication.SessionAuthentication",
@@ -336,8 +338,8 @@ SPECTACULAR_SETTINGS = {
     },
     # available SwaggerUI versions: https://github.com/swagger-api/swagger-ui/releases
     "SWAGGER_UI_DIST": "//unpkg.com/swagger-ui-dist@3.35.1",  # default
-    "SWAGGER_UI_FAVICON_HREF": STATIC_URL
-    + "your_company_favicon.png",  # default is swagger favicon
+    # "SWAGGER_UI_FAVICON_HREF": STATIC_URL
+    # + "your_company_favicon.png",  # default is swagger favicon
 }
 
 

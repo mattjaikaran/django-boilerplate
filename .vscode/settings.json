@@ -4,5 +4,15 @@
       "editor.formatOnSave": true,
       "editor.wordBasedSuggestions": "off",
       "editor.defaultFormatter": "ms-python.black-formatter"
+    },
+    "[json]": {
+      "editor.tabSize": 2,
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[markdown]": {
+      "editor.tabSize": 2,
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }

@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import (
     views,
     viewsets,
@@ -11,10 +10,7 @@ from rest_framework import (
 from rest_framework.authentication import SessionAuthentication
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
-from django.views.generic import FormView
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model, login, authenticate
+from django.contrib.auth import login, authenticate
 from core.models import CustomUser, ContactSupport
 from core.serializers import (
     ForgotPasswordSerializer,
@@ -27,7 +23,6 @@ from core.serializers import (
     UserSerializer,
     ContactSupportSerializer,
 )
-from core import utils
 from core.emails import send_user_login_email
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenObtainPairView

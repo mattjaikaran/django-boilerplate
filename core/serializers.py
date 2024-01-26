@@ -3,7 +3,6 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers, exceptions, status
 from drf_writable_nested.serializers import WritableNestedModelSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from core import utils
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import login, authenticate
 from core.emails import send_support_email, send_user_login_email

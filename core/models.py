@@ -5,7 +5,6 @@ from django.contrib.auth.models import PermissionsMixin, BaseUserManager
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.validators import RegexValidator
 from common.models import AbstractBaseModel
-from core.handlers import PrivateMediaStorage
 
 
 class CustomUserManager(BaseUserManager):
@@ -78,12 +77,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=30, blank=False, null=False)
     last_name = models.CharField(max_length=150, blank=False, null=False)
 
-    phone_number_validator = RegexValidator(
-        regex=r"^\d{9,15}$", message="Phone number must contain only 9 to 15 digits"
-    )
-    phone_number = models.CharField(
-        max_length=15, blank=True, validators=[phone_number_validator]
-    )
+    # phone_number_validator = RegexValidator(
+    #     regex=r"^\d{9,15}$", message="Phone number must contain only 9 to 15 digits"
+    # )
+    # phone_number = models.CharField(
+    #     max_length=15, blank=True, validators=[phone_number_validator]
+    # )
 
     is_admin = models.BooleanField(
         "admin",
