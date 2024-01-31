@@ -21,27 +21,34 @@ Newest DRF, Postgres, Railway config. Easily hook a front end into.
 - Python 3.11.2
 - Django 4.2
 - Django Rest Framework 3.14
-- Postgres 14 DB
-- Django Rest Framework SimpleJWT Auth
+- Postgres 14
+- Django Rest Framework [SimpleJWT Auth](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
   - Session Auth
   - Access Token
   - Refresh Token
   - Token Blacklist
 - [Unfold Admin Panel](https://github.com/unfoldadmin/django-unfold)
 - Bash and Python scripts (WIP)
-  - Located in `@/scripts` directory
-  - `first_time_setup.sh` script (WIP)
-  - `db_setup.sh` for development to quickly drop db and recreate data
+  - Bash scripts
+    - Located in `@/scripts` directory
+    - `first_time_setup.sh` script (WIP)
+    - `db_setup.sh` for development to quickly drop db and recreate data
+  - Python scripts:
+    - Can be in `@/{APP}/management/commands`
+    - Superuser script
+      - Creates super user based on .env file data
   - Seed data (wip)
 - Data output to JSON via `serializers.py`
 - Mailgun Mailer
   - Located in `@/core/emails.py`
+  - In dev, emails are printed in the terminal
 - Django Storages for S3 (WIP)
   - Hosts static files
 - Tests via PyTest (WIP)
 - Black formatter
 - DRF Spectacular Swagger generator
 - Railway Deployment config
+  - Railway config located in `railway.json`
 
 # Get started
 
@@ -57,7 +64,9 @@ What it does:
 - Creates static files
 - Migrate the db
 - Generates a new secret key
-- Copies key to clipboard to paste into .env.local file
+- Copies secret key to clipboard for you to paste into .env.local file
+
+First Time Setup -
 
 ```bash
 $ ./scripts/first_time_setup.sh
