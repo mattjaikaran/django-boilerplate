@@ -22,7 +22,7 @@ pip install -r requirements.txt
 echo "Requirements installed"
 
 cat .env.example >> .env.local
-python manage.py collectstatic
+python3 manage.py collectstatic
 python3 manage.py migrate
 # python3 manage.py create_superuser # creates superuser based on env file data
 

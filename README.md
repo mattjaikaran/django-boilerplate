@@ -1,32 +1,8 @@
 # Matt Django Boilerplate
 
-Django REST Starter with all that cool config stuff I like and need to get started.
+My Django REST API Starter with all that cool config stuff I like and need to get started.
 
-Newest DRF, Postgres, Railway config. Easily hook front end into.
-
-### Technologies
-
-- Python 3.11.2
-- Django 4.2
-- Django Rest Framework 3.14
-- Postgres 14 DB
-- Django Rest Framework SimpleJWT Auth
-- Authentication
-  - Session Auth
-  - Access Token
-  - Refresh Token
-  - Token Blacklist
-- [Unfold Admin Panel](https://github.com/unfoldadmin/django-unfold)
-- Bash and Python scripts (WIP)
-
-  - Located in scripts directory
-
-- Mailgun Mailer
-- Django Storages for S3 (WIP)
-- Tests via PyTest
-- Black formatter
-- DRF Spectacular Swagger generator
-- Railway Deployment config
+Newest DRF, Postgres, Railway config. Easily hook a front end into.
 
 ### Features
 
@@ -36,12 +12,52 @@ Newest DRF, Postgres, Railway config. Easily hook front end into.
 - Mailer
 - Messaging
   - Not using websockets
-- Stripe integration (WIP)
-- Swagger
+- Pagination
+- Stripe payment processor (WIP)
+- Swagger docs
+
+### Technologies
+
+- Python 3.11.2
+- Django 4.2
+- Django Rest Framework 3.14
+- Postgres 14 DB
+- Django Rest Framework SimpleJWT Auth
+  - Session Auth
+  - Access Token
+  - Refresh Token
+  - Token Blacklist
+- [Unfold Admin Panel](https://github.com/unfoldadmin/django-unfold)
+- Bash and Python scripts (WIP)
+  - Located in `@/scripts` directory
+  - `first_time_setup.sh` script (WIP)
+  - `db_setup.sh` for development to quickly drop db and recreate data
+  - Seed data (wip)
+- Data output to JSON via `serializers.py`
+- Mailgun Mailer
+  - Located in `@/core/emails.py`
+- Django Storages for S3 (WIP)
+  - Hosts static files
+- Tests via PyTest (WIP)
+- Black formatter
+- DRF Spectacular Swagger generator
+- Railway Deployment config
 
 # Get started
 
 Can run bash script located in `@/scripts/first_time_setup.sh`
+
+What it does:
+
+- Creates a new db
+- Creates a virtual environment
+- Activates the virtual env
+- Installs dependencies
+- Creates an .env.local and copies data from .env.example
+- Creates static files
+- Migrate the db
+- Generates a new secret key
+- Copies key to clipboard to paste into .env.local file
 
 ```bash
 $ ./scripts/first_time_setup.sh
@@ -58,6 +74,7 @@ $ touch .env
 $ cp .env.example .env
 $ pip3 install -r requirements.txt
 $ python3 manage.py migrate
+# make sure superuser data is filled out in .env
 $ python3 manage.py create_superuser
 
 # before running server generate a new secret key
@@ -79,6 +96,15 @@ $ python3 manage.py shell
 # copy generated code and paste value as SECRET_KEY variable in .env file
 >>> exit()
 ```
+
+## DX Tools (WIP)
+
+- `@/scripts/db_setup.sh`
+  - Drops current db
+  - Creates new db
+  - Run `collectstatic` command
+  - Run `migration` command
+  - Create superuser via `create_superuser.py` script
 
 ### Commands for Postgres 14
 
