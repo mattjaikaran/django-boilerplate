@@ -1,6 +1,9 @@
 .env*.local
 .env
 /env
-*/__pycache__
+/__pycache__/
+*/migrations/__pycache__/
+/*/__pycache__/
+/*/management/commands/__pycache__/
 notes.md
 static

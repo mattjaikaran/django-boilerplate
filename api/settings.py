@@ -3,6 +3,7 @@ Django settings for api project.
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 import os
 from pathlib import Path
 import dj_database_url
@@ -11,6 +12,8 @@ from datetime import timedelta
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+CURRENT_DOMAIN = os.environ.get("CURRENT_DOMAIN")
+CURRENT_PORT = os.environ.get("CURRENT_PORT")
 
 ENVIRONMENT = os.environ.get("ENVIRONMENT", "development")
 print(f"api/settings.py > ENVIRONMENT: {ENVIRONMENT}")
@@ -20,6 +23,8 @@ IN_STAGING = ENVIRONMENT == "staging"
 IN_PROD = ENVIRONMENT == "production"
 
 
+# Can use throughout the application
+# to attain values from .env files
 def _env_get_required(setting_name):
     """Get the value of an environment"""
     setting = os.environ.get(setting_name, "")
@@ -38,7 +43,7 @@ def _env_get_required(setting_name):
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG")
+DEBUG = os.environ.get("DEBUG", False)
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
@@ -47,6 +52,10 @@ ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 INSTALLED_APPS = [
     "unfold",  # Unfold Admin panel
+    "unfold.contrib.filters",
+    "unfold.contrib.forms",
+    # "unfold.contrib.inlines",
+    "unfold.contrib.import_export",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -67,8 +76,6 @@ INSTALLED_APPS = [
     "common",
     "core",
     "todos",
-    # "properties",
-    # "projects",
     # "notifications",
     # "messaging",
 ]
@@ -80,8 +87,8 @@ CORS_ORIGIN_WHITELIST = ("http://localhost:3000",)  # Front End
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
-    # "https://{URL}.vercel.app",
-    # "https://{URL}.com",
+    # "https://{URL}.vercel.app", # NextJS App deployed to Vercel
+    # "https://{URL}.com", # NextJS App deployed to Vercel with a dot com
     # "https://www.{URL}.com",
     # "https://stripe.com", # Stripe
     # "https://*.up.railway.app", # Railway
@@ -91,7 +98,6 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
-    # "https://{URL}.herokuapp.com",
     # "https://*.stripe.com",
     # "https://{URL}.vercel.app",
     # "https://{URL}.com",
@@ -144,9 +150,9 @@ REST_FRAMEWORK = {
     # DRF Spectacular Configuration
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "rest_framework.authentication.TokenAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.TokenAuthentication",  # Allows token auth
+        "rest_framework.authentication.SessionAuthentication",  # Session Auth
+        "rest_framework_simplejwt.authentication.JWTAuthentication",  # JWT tokens
     ],
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated"),
     "DEFAULT_RENDERER_CLASSES": [
@@ -210,7 +216,7 @@ if bool(default_db):
 else:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.postgresql_psycopg2",
+            "ENGINE": "django.db.backends.postgresql",
             "NAME": _env_get_required("DB_NAME"),
             "USER": _env_get_required("DB_USER"),
             "PASSWORD": os.environ.get("DB_PASSWORD", ""),
@@ -239,18 +245,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# This variable allows this get_user_model() throughout the app to be
+# the User model located in core/models.py
 AUTH_USER_MODEL = "core.CustomUser"
+# example -
+# from django.contrib.auth import get_user_model
+# User = get_user_model()
+
+
 # LOGIN_URL="/auth/login"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
 
 
@@ -267,6 +277,7 @@ STATICFILES_FINDERS = [
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATIC_URL = "static/"
+STATIC_ROOT = "static/"
 # STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 
 
@@ -276,16 +287,13 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-CURRENT_DOMAIN = os.environ.get("CURRENT_DOMAIN")
-CURRENT_PORT = os.environ.get("CURRENT_PORT")
-
-
 #
 # Email settings
 #
 # Mailgun Configuration
 # if USE_CUSTOM_SMTP is true, Mailgun settings will be used
-# otherwise, emails will show in the terminal. This is useful for local development
+# otherwise, emails will show in the terminal.
+# This is useful for local development
 
 USE_CUSTOM_SMTP = os.environ.get("USE_CUSTOM_SMTP")
 if USE_CUSTOM_SMTP == "True":
@@ -310,15 +318,29 @@ ADMINS = [("""Admin User""", "test@example.com")]  # update
 MANAGERS = ADMINS
 
 
-# Django Storages - S3 config WIP
-# USE_AWS_STORAGE = os.environ.get("USE_AWS_STORAGE") == "True"
-# PRIVATE_MEDIAFILES_LOCATION = ""
-# AWS_ACCESS_KEY_ID = ""
-# AWS_SECRET_ACCESS_KEY = ""
-# AWS_STORAGE_BUCKET_NAME = ""
-# AWS_S3_CUSTOM_DOMAIN = ""
-# AWS_S3_REGION_NAME = ""
-# AWS_DEFAULT_ACL = None
+# Django Storages - S3 config
+USE_AWS_STORAGE = os.environ.get("USE_AWS_STORAGE") == "True"
+if USE_AWS_STORAGE:
+    AWS_ACCESS_KEY_ID = _env_get_required("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = _env_get_required("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = _env_get_required("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", "us-east-1")
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",
+    }
+    AWS_DEFAULT_ACL = "public-read"
+
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    # Override STATIC_URL and MEDIA_URL to use S3
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+else:
+    # Use local storage for development
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+    DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
+
 
 # STATICFILES_DIRS = [
 #     # os.path.join(BASE_DIR, "static/"),
@@ -326,7 +348,7 @@ MANAGERS = ADMINS
 
 # DRF Spectacular Swagger generator
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Matt Django Boilerplate API",
+    "TITLE": "Matt Jaikaran Django Boilerplate API",
     "DESCRIPTION": "Your project description",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": False,

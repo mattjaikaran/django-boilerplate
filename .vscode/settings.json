@@ -2,12 +2,14 @@
     "[python]": {
       "editor.tabSize": 4,
       "editor.formatOnSave": true,
+      "editor.formatOnPaste": true,
       "editor.wordBasedSuggestions": "off",
       "editor.defaultFormatter": "ms-python.black-formatter"
     },
     "[json]": {
       "editor.tabSize": 2,
       "editor.formatOnSave": true,
+      "editor.formatOnPaste": true,
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[markdown]": {

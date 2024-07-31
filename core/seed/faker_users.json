@@ -1,0 +1,72 @@
+[
+  {
+    "email": "fosterrachel@example.org",
+    "password": "h3O#xKp1Uj$m",
+    "username": "jennifer52",
+    "first_name": "Cynthia",
+    "last_name": "Gonzalez"
+  },
+  {
+    "email": "coxjoseph@example.net",
+    "password": "V7pL&jYx2M#q",
+    "username": "williamsjoshua",
+    "first_name": "Melissa",
+    "last_name": "Flores"
+  },
+  {
+    "email": "samanthahoward@example.org",
+    "password": "8Kf@zNt5Uw$p",
+    "username": "sarahwilliams",
+    "first_name": "Kristen",
+    "last_name": "Mccarthy"
+  },
+  {
+    "email": "michaelwilliams@example.com",
+    "password": "9Gy#qLm7Xz$t",
+    "username": "amandaharris",
+    "first_name": "Debra",
+    "last_name": "Sanchez"
+  },
+  {
+    "email": "christopherjohnson@example.net",
+    "password": "2Jb@vRx8Hs$m",
+    "username": "smithjoshua",
+    "first_name": "Cody",
+    "last_name": "Gonzalez"
+  },
+  {
+    "email": "coxbrian@example.org",
+    "password": "5Nw#yPf3Lq$k",
+    "username": "sarahwilson",
+    "first_name": "Heather",
+    "last_name": "Perez"
+  },
+  {
+    "email": "christopherjones@example.net",
+    "password": "1Tz#mKd9Fj$x",
+    "username": "smithjennifer",
+    "first_name": "Kimberly",
+    "last_name": "Brown"
+  },
+  {
+    "email": "danielmiller@example.org",
+    "password": "6Bh#sWc2Ry$n",
+    "username": "thomasjennifer",
+    "first_name": "Cynthia",
+    "last_name": "Gonzalez"
+  },
+  {
+    "email": "jonesjoseph@example.com",
+    "password": "4Xm#pLf7Kz$v",
+    "username": "williamsrobert",
+    "first_name": "Kristen",
+    "last_name": "Johnson"
+  },
+  {
+    "email": "christopherbrown@example.org",
+    "password": "3Gq#yNt8Jx$w",
+    "username": "smithdaniel",
+    "first_name": "Melissa",
+    "last_name": "Rodriguez"
+  }
+]

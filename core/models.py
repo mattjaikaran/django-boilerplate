@@ -74,6 +74,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         unique=True, error_messages={"unique": "A user with that email already exists"}
     )
+    username = models.CharField(
+        max_length=30,
+        blank=False,
+        unique=True,
+        error_messages={"unique": "That username already exists"},
+    )
     first_name = models.CharField(max_length=30, blank=False, null=False)
     last_name = models.CharField(max_length=150, blank=False, null=False)
 
@@ -102,11 +108,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # )
 
     # Use 'email' for the user's username
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "username"
 
     # Prompt for these required fields when creating a user via `createsuperuser` command
     # 'email' is included automatically since it is set as USERNAME_FIELD
     REQUIRED_FIELDS = [
+        "email",
         "first_name",
         "last_name",
     ]

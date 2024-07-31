@@ -52,6 +52,8 @@ Newest DRF, Postgres, Railway config. Easily hook a front end into.
 
 # Get started
 
+<!-- **WIP**
+
 Can run bash script located in `@/scripts/first_time_setup.sh`
 
 What it does:
@@ -72,7 +74,7 @@ First Time Setup -
 $ ./scripts/first_time_setup.sh
 ```
 
-Or you can run the following manually -
+Or you can run the following manually - -->
 
 ```bash
 $ git clone https://github.com/mattjaikaran/django-boilerplate
@@ -111,9 +113,14 @@ $ python3 manage.py shell
 - `@/scripts/db_setup.sh`
   - Drops current db
   - Creates new db
+  - Updates Pip
   - Run `collectstatic` command
   - Run `migration` command
   - Create superuser via `create_superuser.py` script
+
+```bash
+$ ./scripts/db_setup.sh
+```
 
 ### Commands for Postgres 14
 

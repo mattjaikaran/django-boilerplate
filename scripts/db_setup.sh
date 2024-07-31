@@ -7,10 +7,10 @@ dropdb django_boilerplate_db
 echo "db dropped"
 
 echo "creating new db..."
-createdb --username=mattjaikaran django_boilerplate_db
+createdb --username=mattjaikaran django_boilerplate_db # replace the username with yours
 echo "db created"
 
-echo "Updating"
+echo "Updating Pip"
 pip install --upgrade pip
 
 
@@ -31,3 +31,7 @@ echo "created superuser"
 
 
 echo ">>> db_setup complete"
+
+echo ">>> Running development server..."
+python3 manage.py runserver
+
