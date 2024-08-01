@@ -108,26 +108,6 @@ def send_password_reset_email(context):
 #     )
 
 
-# create email to support team (from support team) when a new property is created
-# def send_property_create_email(context):
-#     print(f"context in send_property_create_email => {context}")
-#     subject_context = {
-#         "environment": settings.ENVIRONMENT.upper(),
-#         # "user_email": context["user_email"],
-#         "property_name": context["property_name"],
-#     }
-#     property_create_subject = render_to_string(
-#         "property/property_create_subject.txt", subject_context
-#     )
-#     send_html_email(
-#         subject=property_create_subject,
-#         template="property/property_create_email.html",
-#         send_from=_env_get_required("SUPPORT_EMAIL"),
-#         send_to=_env_get_required("SUPPORT_EMAIL"),
-#         context=context,
-#     )
-
-
 # create email to support team (from support team) when a user contacts support
 def send_support_email(context):
     print(f"context in send_support_email => {context}")

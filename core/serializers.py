@@ -114,9 +114,6 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             # organization = Organization.objects.create(
             #     name=company_name,
             #     owner=user,
-            #     is_developer=is_developer,
-            #     is_vendor=is_vendor,
-            #     is_consultant=is_consultant,
             # )
             # user.organizations.add(organization)
             user.save()
@@ -190,44 +187,6 @@ class ForgotPasswordSerializer(serializers.Serializer):
 class PasswordResetSerializer(serializers.Serializer):
     token = serializers.CharField()
     new_password = serializers.CharField(write_only=True)
-
-
-# class MagicLinkSerializer(serializers.Serializer):
-#     email = serializers.EmailField()
-
-#     def validate(self, data):
-#         email = data.get("email")
-#         user = CustomUser.objects.filter(email=email).first()
-#         print(f"email => {email}")
-#         print(f"user => {user}")
-#         print(f"data => {data}")
-#         if user is None:
-#             raise exceptions.ValidationError("No user with that email.")
-#         return data
-
-#     def create(self, validated_data):
-#         try:
-#             email = validated_data.get("email")
-#             user = CustomUser.objects.filter(email=email).first()
-#             print(f"email => {email}")
-#             print(f"user => {user}")
-#             print(f"validated_data => {validated_data}")
-#             token = sesame.utils.get_token(user)
-#             print(f"token => {token}")
-#             send_user_login_email(
-#                 {
-#                     "site_url": utils.get_site_url(),
-#                     "project_name": validated_data["project"],
-#                     "vendor_integrator_name": validated_data["vendor"],
-#                 }
-#             )
-#             return {
-#                 "email": email,
-#                 "token": token,
-#             }
-#         except Exception as e:
-#             print(f"Exception => {e}")
-#             raise exceptions.ValidationError("No user with that email.")
 
 
 class ContactSupportSerializer(serializers.ModelSerializer):

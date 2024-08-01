@@ -14,14 +14,13 @@ from django.contrib.auth import login, authenticate
 from core.models import CustomUser, ContactSupport
 from core.serializers import (
     ForgotPasswordSerializer,
-    # MagicLinkSerializer,
-    # OrganizationSerializer,
     PasswordResetSerializer,
-    # TeamSerializer,
     UserLoginSerializer,
     UserRegistrationSerializer,
     UserSerializer,
     ContactSupportSerializer,
+    # OrganizationSerializer,
+    # TeamSerializer,
 )
 from core.emails import send_user_login_email
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -222,126 +221,6 @@ class LogoutView(views.APIView):
             )
         except Exception as e:
             return Response(data={str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-
-# Below is WIP
-# Trying to implement passwordless login
-
-
-# generates the token and sends the email to the user
-# class EmailLoginView(FormView):
-#     template_name = "auth/email_login.html"
-#     form_class = EmailLoginForm
-
-#     def get_user(self, email):
-#         """Find the user with this email address."""
-#         User = get_user_model()
-#         try:
-#             return User.objects.get(email=email)
-#         except User.DoesNotExist:
-#             return None
-
-#     def create_link(self, user):
-#         """Create a login link for this user."""
-#         link = reverse("login")
-#         link = self.request.build_absolute_uri(link)
-#         link += sesame.utils.get_query_string(user)
-#         return link
-
-#     def send_email(self, user, link):
-#         """Send an email with this login link to this user."""
-#         user.email_user(
-#             subject="[django-sesame] Log in to our app",
-#             message=f"""\
-# Hello,
-
-# You requested that we send you a link to log in to our app:
-
-#     {link}
-
-# Thank you for using django-sesame!
-# """,
-#         )
-
-#     def email_submitted(self, email):
-#         user = self.get_user(email)
-#         if user is None:
-#             # Ignore the case when no user is registered with this address.
-#             # Possible improvement: send an email telling them to register.
-#             print("user not found:", email)
-#             return
-#         link = self.create_link(user)
-#         self.send_email(user, link)
-
-#     def form_valid(self, form):
-#         self.email_submitted(form.cleaned_data["email"])
-#         return render(self.request, "email_login_success.html")
-
-
-# when a user clicks on the link in the email, this view is called
-# it logs the user in
-class MagicLinkLogin(views.APIView):
-    def post(self, request):
-        print(f"self.request.data => {self.request.data}")
-        print(f"request.data => {request.data}")
-        try:
-            print(
-                f">>> core/views.py > MagicLinkLogin > request.data: {request.data} <<<"
-            )
-            # user = CustomUser.objects.filter(email=request.data["email"]).first()
-            user = authenticate(request, token=request.data.token)
-            print(f"user => {user}")
-            sesame_user = sesame.utils.get_user(request.data.token)
-            print(f"sesame_user => {sesame_user}")
-            login(request, user)
-            print(f"login(request, user) => {login(request, user)}")
-            return Response(
-                {
-                    "user": user,
-                    "token": request.data["token"],
-                    "message": "Magic link sent to your email.",
-                },
-                status=status.HTTP_200_OK,
-            )
-        except Exception as e:
-            print(f"Error in MagicLinkLogin view => {e}")
-            return Response(data={str(e)}, status=status.HTTP_400_BAD_REQUEST)
-
-
-# class MagicLinkView(views.APIView):
-#     def post(self, request):
-#         print(f">>> core/views.py > MagicLinkView > request.data: {request.data} <<<")
-#         serializer = MagicLinkSerializer(data=request.data)
-#         print(f"serializer => {serializer}")
-#         print(f"serializer.is_valid() => {serializer.is_valid()}")
-#         if serializer.is_valid():
-#             # Send the magic link to the user's email
-#             # Typically, you'd send an email with a link that includes the 'token' query parameter
-#             # Example: https://example.com/login/?token=your-magic-link-token
-#             email = serializer.validated_data["email"]
-#             # Send the magic link via email
-#             print(f">>> core/views.py > MagicLinkView > email: {email} <<<")
-#             user = CustomUser.objects.filter(email=email).first()
-
-#             token = sesame.utils.get_token(user)
-#             print(f"token => {token}")
-#             send_user_login_email(
-#                 {
-#                     "site_url": utils.get_site_url(),
-#                     "email": email,
-#                     "token": token,
-#                     "login_link": utils.get_site_url() + "/login/?token=" + token,
-#                 }
-#             )
-#             return Response(
-#                 {
-#                     "email": email,
-#                     "token": token,
-#                     "message": "Magic link sent to your email.",
-#                 },
-#                 status=status.HTTP_200_OK,
-#             )
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ContactSupportViewSet(

@@ -40,8 +40,8 @@ from django.conf.urls.static import static
 router = DefaultRouter()
 
 # # Admin Panel text
-admin.site.site_header = "Django Admin Panel"
-admin.site.site_title = "Django Boilerplate Admin Panel"
+admin.site.site_header = "DRF Admin Panel"
+admin.site.site_title = "DRF Boilerplate Admin Panel"
 admin.site.index_title = "Welcome to Django Boilerplate Admin Panel"
 
 router.register(r"users", UserViewSet, basename="users")
@@ -49,7 +49,6 @@ router.register(r"contact-support", ContactSupportViewSet, basename="contact-sup
 router.register(r"todos/", TodoViewSet)
 # router.register(r"organizations", OrganizationViewSet, basename="organizations")
 # router.register(r"teams", TeamViewSet, basename="teams")
-# router.register(r"properties", PropertyViewSet, basename="properties")
 # router.register(r"conversations", ConversationViewSet, basename="conversations")
 # router.register(r"messaging", MessageViewSet, basename="messaging")
 # router.register(r"notifications", NotificationViewSet, basename="notifications")

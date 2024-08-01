@@ -46,13 +46,6 @@ def get_organization_upload_path(instance, filename):
 #         related_name="org_owner",
 #         null=True,
 #     )
-#     is_developer = models.BooleanField("developer", default=True)
-#     is_vendor = models.BooleanField("vendor", default=False)
-#     is_consultant = models.BooleanField(
-#         "consultant",
-#         default=False,
-#         help_text="Consultants allowed to do have actions on both sides - buyer/seller",
-#     )
 
 #     def __str__(self):
 #         return f"Organization: {str(self.name)}"

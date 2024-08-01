@@ -1,6 +1,6 @@
 # Matt Django Boilerplate
 
-My Django REST API Starter with all that cool config stuff I like and need to get started.
+My Django DRF REST API Starter with all that cool config stuff I like and need to get started.
 
 Newest DRF, Postgres, Railway config. Easily hook a front end into.
 
@@ -8,8 +8,8 @@ Newest DRF, Postgres, Railway config. Easily hook a front end into.
 
 - Users
   - Organization/Team config commented out
-- Notifications
 - Mailer
+- Notifications
 - Messaging
   - Not using websockets
 - Pagination
@@ -22,13 +22,13 @@ Newest DRF, Postgres, Railway config. Easily hook a front end into.
 - Django 4.2
 - Django Rest Framework 3.14
 - Postgres 14
-- Django Rest Framework [SimpleJWT Auth](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
+- [Django Rest Framework SimpleJWT Auth](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/)
   - Session Auth
   - Access Token
   - Refresh Token
   - Token Blacklist
 - [Unfold Admin Panel](https://github.com/unfoldadmin/django-unfold)
-- Bash and Python scripts (WIP)
+- Bash and Python scripts
   - Bash scripts
     - Located in `@/scripts` directory
     - `first_time_setup.sh` script (WIP)
@@ -42,8 +42,8 @@ Newest DRF, Postgres, Railway config. Easily hook a front end into.
 - Mailgun Mailer
   - Located in `@/core/emails.py`
   - In dev, emails are printed in the terminal
-- Django Storages for S3 (WIP)
-  - Hosts static files
+- Django Storages for S3
+  - Hosts static files (ie - admin panel, images)
 - Tests via PyTest (WIP)
 - Black formatter
 - DRF Spectacular Swagger generator
