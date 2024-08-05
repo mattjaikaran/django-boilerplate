@@ -9,9 +9,9 @@ Newest DRF, Postgres, Railway config. Easily hook a front end into.
 - Users
   - Organization/Team config commented out
 - Mailer
-- Notifications
-- Messaging
-  - Not using websockets
+- Notifications feature
+- Messaging feature
+  - ie Inbox with messages
 - Pagination
 - Stripe payment processor (WIP)
 - Swagger docs
@@ -108,7 +108,7 @@ $ python3 manage.py shell
 >>> exit()
 ```
 
-## DX Tools (WIP)
+## DX Tools
 
 - `@/scripts/db_setup.sh`
   - Drops current db
@@ -127,7 +127,7 @@ $ ./scripts/db_setup.sh
 [Postgres Docs](https://www.postgresql.org/docs/14/)
 
 ```bash
-$ psql my_db # enter shell
 $ createdb --username=USERNAME my_db # create db
 $ dropdb my_db # drop db
+$ psql my_db # enter shell if necessary
 ```

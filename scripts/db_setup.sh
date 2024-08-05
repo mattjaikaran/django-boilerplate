@@ -1,5 +1,5 @@
-echo ">>> db_setup initialization"
 # !/bin/bash
+echo ">>> db_setup initialization"
 
 echo ">>> db setup - running db_setup.sh"
 echo "dropping django_boilerplate_db"
