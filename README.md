@@ -8,12 +8,12 @@ Newest DRF, Postgres, Railway config. Easily hook a front end into.
 
 - Users
   - Organization/Team config commented out
-- Mailer
+- Mailer (WIP)
 - Notifications feature
 - Messaging feature
   - ie Inbox with messages
 - Pagination
-- Stripe payment processor (WIP)
+<!-- - Stripe payment processor (WIP) -->
 - Swagger docs
 
 ### Technologies
@@ -77,28 +77,22 @@ $ ./scripts/first_time_setup.sh
 Or you can run the following manually - -->
 
 ```bash
-$ git clone https://github.com/mattjaikaran/django-boilerplate
-$ cd django-boilerplate
-$ python3 -m venv env
-$ source env/bin/activate
-$ touch .env
-$ cp .env.example .env
-$ pip3 install -r requirements.txt
-$ python3 manage.py migrate
-# make sure superuser data is filled out in .env
-$ python3 manage.py create_superuser
-
-# before running server generate a new secret key
-$ python3 manage.py shell
->>> from django.core.management.utils import get_random_secret_key
->>> print(get_random_secret_key())
-# copy generated code and paste value as SECRET_KEY variable in .env file
->>> exit()
-
-$ python3 manage.py runserver
+$ python3 -m venv env # using the venv virtual environment
+$ source env/bin/activate # activate the environment
+$ git clone URL
+$ cd REPO_NAME
+$ touch .env # create a new env file
+# update the .env file with necessary values -> db info, superuser info
+$ pip3 install -r requirements.txt # install dependencies from requirements.txt
+$ python3 manage.py migrate # apply migration files to your local db
+$ python3 manage.py create_superuser # runs custom script to create a superuser
+$ ./scripts/generate_secret_key.sh # generate new secret key
+$ python3 manage.py runserver # run the local server on http://localhost:8000
 ```
 
 ### Generate a new Django Secret Key
+
+Can run `./scripts/generate_secret_key.sh`
 
 ```bash
 $ python3 manage.py shell

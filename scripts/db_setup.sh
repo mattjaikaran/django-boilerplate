@@ -1,13 +1,20 @@
 # !/bin/bash
 echo ">>> db_setup initialization"
 
+# Source the .env file
+source .env
+echo "Database User: $DB_USER"
+echo "Database Name: $DB_NAME"
+echo "Database Password: $DB_PASSWORD"
+
+
 echo ">>> db setup - running db_setup.sh"
-echo "dropping django_boilerplate_db"
-dropdb django_boilerplate_db
+echo "dropping stream_db"
+dropdb stream_db
 echo "db dropped"
 
 echo "creating new db..."
-createdb --username=mattjaikaran django_boilerplate_db # replace the username with yours
+createdb --username=$DB_USER $DB_NAME
 echo "db created"
 
 echo "Updating Pip"
@@ -28,7 +35,6 @@ python3 manage.py create_superuser # creates superuser based on env file data
 echo "created superuser"
 
 # other scripts here
-
 
 echo ">>> db_setup complete"
 
